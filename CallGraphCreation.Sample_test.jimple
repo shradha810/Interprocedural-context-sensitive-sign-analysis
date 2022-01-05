@@ -1,0 +1,103 @@
+public class CallGraphCreation.Sample_test extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        CallGraphCreation.Sample_test this;
+
+        this := @this: CallGraphCreation.Sample_test;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static int foo(int, int, int)
+    {
+        int x, y, z, r, $i0;
+
+        x := @parameter0: int;
+        y := @parameter1: int;
+        z := @parameter2: int;
+        if z < 0 goto label0;
+
+        r = staticinvoke <CallGraphCreation.Sample_test: int factorial(int)>(z);
+        goto label1;
+
+     label0:
+        r = x * y;
+
+     label1:
+        $i0 = staticinvoke <CallGraphCreation.Sample_test: int bar(int,int)>(x, y);
+        r = r + $i0;
+        return r;
+    }
+
+    public static int bar(int, int)
+    {
+        int u, v, w, u, v;
+
+        u := @parameter0: int;
+        v := @parameter1: int;
+        u = staticinvoke <CallGraphCreation.Sample_test: int factorial(int)>(u);
+        v = staticinvoke <CallGraphCreation.Sample_test: int factorial(int)>(v);
+        w = u + v;
+        return w;
+    }
+
+    public static int baz(int)
+    {
+        int s, t;
+
+        s := @parameter0: int;
+        t = s * s;
+        t = neg t;
+        return t;
+    }
+
+    public static int factorial(int)
+    {
+        int input, res, i;
+
+        input := @parameter0: int;
+        res = 1;
+        i = 2;
+        goto label1;
+
+     label0:
+        res = res * i;
+        i = i + 1;
+
+     label1:
+        if i <= input goto label0;
+
+        return res;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        byte a;
+        int n, p, q, $i0;
+        java.io.PrintStream $r0;
+        java.lang.Object[] $r1;
+        java.lang.Integer $r2;
+
+        args := @parameter0: java.lang.String[];
+        a = 6;
+        n = staticinvoke <CallGraphCreation.Sample_test: int factorial(int)>(a);
+        p = staticinvoke <CallGraphCreation.Sample_test: int foo(int,int,int)>(-2, -3, 4);
+        $i0 = staticinvoke <CallGraphCreation.Sample_test: int baz(int)>(-10);
+        q = p * $i0;
+        $r0 = <java.lang.System: java.io.PrintStream out>;
+        $r1 = newarray (java.lang.Object)[4];
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(a);
+        $r1[0] = $r2;
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(n);
+        $r1[1] = $r2;
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(p);
+        $r1[2] = $r2;
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(q);
+        $r1[3] = $r2;
+        virtualinvoke $r0.<java.io.PrintStream: java.io.PrintStream printf(java.lang.String,java.lang.Object[])>("a: %d \nn: %d \np: %d \nq: %d \n", $r1);
+        return;
+    }
+}
